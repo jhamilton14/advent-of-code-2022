@@ -2,7 +2,7 @@ export const part1 = (input: string) => {
   const lines = input.split("\n\n").map(line => line.split("\n"));
 
   return Math.max(...lines.map(line => {
-    return line.reduce((total, current) => total + parseInt(current), 0)
+    return line.reduce((total, current) => total + parseInt(current), 0);
   }));
 };
 
@@ -11,7 +11,7 @@ export const part2 = (input: string) => {
 
   // start coding here
   return lines.map(line => {
-    return line.reduce((total, current) => total + parseInt(current), 0)
+    return line.reduce((total, current) => total + parseInt(current), 0);
   }).sort((a, b) => b - a).splice(0,3).reduce((total, current) => total + current, 0);
 };
 
