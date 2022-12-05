@@ -1,19 +1,18 @@
-import { sum } from "https://deno.land/x/lodash@4.17.15-es/lodash.js";
-
 export const part1 = (input: string) => {
-  return Math.max(
-    ...input.split("\n\n").map((elfCalories) =>
-      sum(elfCalories.split("\n").map(Number))
-    ),
-  );
+  const lines = input.split("\n\n").map(line => line.split("\n"));
+
+  return Math.max(...lines.map(line => {
+    return line.reduce((total, current) => total + parseInt(current), 0)
+  }));
 };
 
 export const part2 = (input: string) => {
-  const caloriesByElf = input.split("\n\n").map((elfCalories) =>
-    sum(elfCalories.split("\n").map(Number))
-  );
+  const lines = input.split("\n\n").map(line => line.split("\n"));
 
-  return sum(caloriesByElf.sort((a, b) => b - a).slice(0, 3));
+  // start coding here
+  return lines.map(line => {
+    return line.reduce((total, current) => total + parseInt(current), 0)
+  }).sort((a, b) => b - a).splice(0,3).reduce((total, current) => total + current, 0);
 };
 
 export const main = () => {
