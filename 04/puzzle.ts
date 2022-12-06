@@ -23,14 +23,27 @@ export const part1 = (input: string) => {
 };
 
 export const part2 = (input: string) => {
-  const lines = input.split("\n").map(line => line.split("-"));
+  const lines = input.split("\n").map(line => line.split(","));
+  let numberOfIntersections = 0;
+  lines.forEach(line => {
+    const firstElf = line[0].split("-");
+    const firstElfAssignments = Array.from(
+      { length: parseInt(firstElf[1], 10) - parseInt(firstElf[0], 10) + 1 },
+      (_, i) => (parseInt(firstElf[0], 10) + i).toString()
+    );
+    
+    const secondElf = line[1].split("-");
+    const secondElfAssignments = Array.from(
+      { length: parseInt(secondElf[1], 10) - parseInt(secondElf[0], 10) + 1 },
+      (_, i) => (parseInt(secondElf[0], 10) + i).toString()
+    );
 
-  // start coding here
+    if(firstElfAssignments.filter(value => secondElfAssignments.includes(value)).length > 0 || secondElfAssignments.filter(value => firstElfAssignments.includes(value)).length > 0) {
+      numberOfIntersections++;
+    }
+  })
 
-  "234"
-  "678"
-
-  return lines.length;
+  return numberOfIntersections;
 };
 
 export const main = () => {
